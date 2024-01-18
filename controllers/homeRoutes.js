@@ -27,6 +27,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/event', async (req, res) => {
+  try {
+    res.render('event', {
+      logged_in: req.session.logged_in 
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get('/project/:id', async (req, res) => {
   try {
     const projectData = await Project.findByPk(req.params.id, {
